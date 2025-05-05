@@ -1,0 +1,20 @@
+#triangle {
+    position: fixed;
+
+    width: 0;
+	height: 0;
+	border-left: 25px solid transparent;
+	border-right: 25px solid transparent;
+	border-bottom: 50px solid cyan;
+    bottom: 50%;
+    top: 50%;
+}
+
+#bullet {
+    position: fixed;
+    
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background-color: yellow;
+}
