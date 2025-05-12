@@ -1,19 +1,5 @@
 import gameVal from './variables.js';
-let bulletsTarget = new Map();
-
-
-
-function spawnBullet() {
-    const parent = document.getElementById('parent');
-    const bullet = document.createElement("div");
-    bullet.setAttribute("id", "bullet")
-    bullet.style.top = gameVal.PlrY+25+"px";
-    bullet.style.left = gameVal.PlrX+20+"px";
-    // bullet.textContent = 'pew!';
-    parent.appendChild(bullet);
-
-    bulletsTarget.set(bullet, {X: gameVal.MouseX,Y: gameVal.MouseY})
-}
+import assets from './assets.js'
 
 function updatePlrCoordinate() {
     if (gameVal.InputBuffer.a==true) {
@@ -28,11 +14,42 @@ function updatePlrCoordinate() {
     if (gameVal.InputBuffer.s==true) {
         gameVal.PlrY++;
     }
-    gameVal.Plr.style.left=gameVal.PlrX+"px";
-    gameVal.Plr.style.top=gameVal.PlrY+"px";
+    assets.plr.style.left=gameVal.PlrX+"px";
+    assets.plr.style.top=gameVal.PlrY+"px";
+}
+function updatePlrAngle() {
+    const pointX = gameVal.PlrX-gameVal.MouseX;
+    const pointY = gameVal.PlrY-gameVal.MouseY;
+    // console.log(gameVal.PlrX+'-'+gameVal.MouseX);
+    // console.log(gameVal.PlrX+'-'+gameVal.MouseX);
+
+    const deg = (Math.atan2(pointY, pointX)/Math.PI)*180;
+    console.log(deg)
+    assets.plr.style.transform = `rotate(${deg}deg)`;
+}
+function spawnBullet() {
+    const parent = document.getElementById('parent');
+    const bullet = document.createElement("div");
+    bullet.setAttribute("id", "bullet")
+    bullet.style.top = gameVal.PlrY+25+"px";
+    bullet.style.left = gameVal.PlrX+20+"px";
+    parent.appendChild(bullet);
+
+    const lifespan = createAttribute('lifespan')
+    lifespan.value = '5000';
+    bullet.setAttribute(lifespan);
 }
 function updateBullets() {
-    gameVal.bulletsTarget.forEach( )
+    const bulletsElm = document.getElementById('bullet')
+    const bullets = [...bulletsElm];
+    bulletsElm.forEach(bullet => {
+        const lifespan = Number(bullet.getAttribute('lifespan'))
+        if (lifespan<=0) {
+            bullet.remove()
+            return
+        } 
+        bullet.setAttribute('lifespan', String(lifespan-1));
+    });
 }
 
 function onMouseEvent(m) {
@@ -44,9 +61,8 @@ function onMouseEvent(m) {
         gameVal.gun = null;
         return
     }
-
-    gameVal.MouseX = m.ClientX;
-    gameVal.MouseY = m.ClientY;
+    gameVal.MouseX = m.pageX;
+    gameVal.MouseY = m.pageY;
 }
 
 function onKeyEvent(e, bool) {
@@ -58,7 +74,8 @@ function onKeyEvent(e, bool) {
 export default {
     onKeyEvent,
     onMouseEvent,
-    spawnBullet,
     updatePlrCoordinate,
+    updatePlrAngle,
+    spawnBullet,
     updateBullets
 };

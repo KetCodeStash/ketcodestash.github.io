@@ -10,5 +10,7 @@ document.addEventListener("mousemove", (m) => {handler.onMouseEvent(m)})
 
 const movement = setInterval(() => {
     handler.updatePlrCoordinate()
+    handler.updatePlrAngle()
+    handler.updateBullets()
 }, 1)
 
