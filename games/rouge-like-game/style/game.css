@@ -1,4 +1,4 @@
-#triangle {
+.triangle {
     position: fixed;
 
     width: 0;
@@ -10,7 +10,7 @@
     top: 50%;
 }
 
-#bullet {
+.bullet {
     position: fixed;
     
     height: 10px;
