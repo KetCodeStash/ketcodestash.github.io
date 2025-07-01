@@ -1,128 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome!</title>
-    <style>
-        .theme-effect{
-            color: lightblue;
-            background-color: #111;
-        }
-    
-        table{
-            border: 1px groove lightblue;
-            border-radius: 20px;
-            width: 70%;
-            background-color: #111;
-        }
-        h1, h2, h3, p{
-            color: white;
-            font-family: monospace;
-            margin-left: 30px;
-            margin-right: 30px;
-        }
-        h1, h2{
-            margin-bottom: 10px;
-        }
-        .project-style{
-            border: 1px groove lightblue;
-            background-color: #111;
-            color: lightblue;
-            border-radius: 25px;
-            width: 80%;
-            height: 100px;
-            margin: 5px;
-        }
-        .contact-style{
-            border: 0px;
-            border-left: 1px groove lightblue;
-            border-right: 1px groove lightblue;
-
-            background-color: #111;
-            color   : lightblue;
-            width: 95%;
-            margin-top: 5px;
-            margin-bottom: 5px;
-            margin-left: 2%;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>welcome!</title>
+  <link rel="stylesheet" href="/assets/styles/main.css">
 </head>
-<body style="background-color: #222;">
-    <center>
-        <table class="theme-effect">
-            <tr>
-                <td>
-                    <center><h1>Welcome to <span class="theme-effect"">KetCodeStash!</span></h1></center>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <center>
-                        <p>This is my portofolio web projects</p>
-                        <p>Everything here is all of my self-driven projects and course projects combined into one github page </p>
-                    </center>
-                </td>
-            </tr>
-            <!-- <tr>
-                <table>
-                    <tr>
-                        <td>repository</td>
-                        <td>github</td>
-                        <td>Linkedin</td>
-                        <td>Instagram</td>
-                    </tr>
-                </table> -->
-            <!-- </tr> -->
-        </table>
-    </center>
-    <br>
-    <br>
-    <center>
-        <table>
-            <tr>
-                <td class="theme-effect"><center><h2>Project <span class="theme-effect"">Sections</span> </h2></center></td>
-            </tr>
-            <tr>
-                <td><center><button class="project-style" onclick="toGames()">Games</button></center></td>
-            </tr>
-                <td><center><button class="project-style" onclick="toBlogs()">Blogs</button></center></td>
-            </tr>
-                <td><center><button class="project-style" onclick="toUtils()">utilities</button></center></td>
-            </tr>
-            <tr>
-                <td style="height: 6px;">  </td>
-            </tr>
-        </table>
-    </center>
-    <br>
-    <br>
-    <center>
-        <table>
-            <tr>
-                <td style="width: 10%;"><button class="contact-style" onclick="toRepo()">repository</button></td>
-                <td style="width: 10%;"><button class="contact-style" onclick="toGithub()">github</button></td>
-            </tr>
-        </table>
-    </center>
+<body>
+    <!-- title -->
+    <header class="style-main">
+        <h1>Welcome to <span>KetCodeStash!</span></h1>
+    </header>
+    <!-- website navigation section -->
+    <nav class="style-main">
+        <h2>content</h2>
+        <button>Games</button>
+        <button>Blogs</button>
+        <button>Utilities</button>
+    </nav>
+    <!-- navigation description -->
+    <section class="style-main">
+        <h2>Description</h2>
+        <textarea readonly>>lorem opsum
 
-    <script>
-        function toGithub(){
-            window.location.href = "https://github.com/KetCodeStash";
-        }
-        function toRepo(){
-            window.location.href = "https://github.com/KetCodeStash/ketcodestash.github.io";
-        }
-        function toGames(){
-            window.location.href = "/games"
-        }
-        function toBlogs(){
-            window.location.href = "/blogs"
-        }
-        function toUtils(){
-            window.location.href = "/utils"
-        }
+>>smth to explain</textarea>
+    </section>
+    <!-- link and stuff -->
+    <footer class="style-main">
 
-    </script>
+    </footer>  
 </body>
 </html>
