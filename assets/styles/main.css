@@ -1,21 +1,12 @@
 body{
     font-family: 'Courier New', Courier, monospace;
 }
-
-@keyframes mouse-hover{
-    from{
-        border: 2px #00ccbb groove;
-        height: 100px;
-        width: 400px;
-    }
-    to{
-        border: 5px #0055bb groove;
-        height: 110px;
-        width: 420px;
-    }
+.circular-style{
+    border-radius: 50%;
 }
 
-@media (min-aspect-ratio: 16/9) {
+
+@media (min-aspect-ratio: 4/3) {
     body{
         display: grid;
         grid-template-columns: 50% 50%;
@@ -25,17 +16,19 @@ body{
         row-gap: 15px;
         background-color: #151515;
     }
+    /* styling */
     .style-main{
         background-color: #111;
         border: 2px #00ccbb groove;
         box-shadow: 0px 1px 5px 1px #0099bb;
         color: #bbbbbb;
     }
+    /* for title */
     h1>span{
         color: #00aabb;
         text-shadow:0px 0px 2px #00ccbb;
-        /* color:#00ccbb; */
     }
+    /* for sub-title */
     h2{
         color: #00aabb;
         border-bottom: 1px groove #00aabb;
@@ -43,8 +36,14 @@ body{
         padding-right: 20px;
         height: 30px;
         text-align: center;
-        /* text-shadow:0px 0px 2px #00ccbb; */
     }
+    /* for footer links */
+    a{ 
+        text-align: left;
+        font-size: 11px;
+    }
+    /* layout */
+    /* header */
     body>header{
         grid-column-start: 1;
         grid-column-end: 3;
@@ -54,12 +53,14 @@ body{
         border-top-left-radius: 15px;
         border-top-right-radius: 15px;
     }
+    /* navigation */
     body>nav{
         display: flex;
         flex-direction: column;
         align-items: center;
         height: 500px;
     }
+    /* buttons */
     button{
         height: 100px;
         width: 400px;
@@ -69,14 +70,17 @@ body{
         border: 2px #00ccbb groove;
         box-shadow: 0px 1px 5px 1px #0099bb;
         color: #00ccbb;
-        transition: border .1s linear, height .1s linear, width .1s linear;
+        transition: border .1s linear, height .1s linear, width .1s linear, box-shadow 50ms linear;
     }
     button:hover{
         box-shadow: 0px 1px 10px 1px #0099bb;
         height: 110px;
         width: 420px;
     }
-    
+    button:active{
+        box-shadow: 0px 1px 20px 1px #0099bb;
+    }
+    /* description section */
     body>section{
         display: flex;
         align-items: center;
@@ -94,13 +98,61 @@ body{
         border-radius: 5px;
         outline: 0px;
     }
+    /* footer */
     body>footer{
+        display: flex;
+        flex-direction: column;
         grid-column-start: 1;
         grid-column-end: 3;
-        height: 75px;
         border-bottom-left-radius: 15px;
         border-bottom-right-radius: 15px;
+        padding: 1px;
+        padding-left: 10px;
     }
+    h3{
+        margin: 0px;
+    }
+    .Github-header{
+        padding: 0px;
+    }
+    .Github-header>h3{
+        margin: 0px;
+        border-bottom: 1px groove gray;
+        width: 270px;
+        text-align: center;
+    }
+    .Github-links{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        height: 65px;
+        color: #8b4704;
+    } 
+    .Social-header{
+        width: 50%;
+        text-align: center;
+    }
+
+    .Social-links{
+        text-align: center;
+        color: #8b4704;
+    }
+    a{
+        font-size: 14px;
+    }
+    .img-space{
+        width: 60px;
+    }
+
+    img{
+        height: 90%;
+        width: 90%;
+        border: 3px groove grey;
+    }
+    /* table, tr, td{
+        border: 1px yellow groove;
+    } */
+
 }
 
 @media (max-aspect-ratio: 8/6) {
