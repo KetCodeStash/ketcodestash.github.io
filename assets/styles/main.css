@@ -102,6 +102,7 @@ body{
     body>footer{
         display: flex;
         flex-direction: column;
+        height: 100px;
         grid-column-start: 1;
         grid-column-end: 3;
         border-bottom-left-radius: 15px;
@@ -117,7 +118,8 @@ body{
     }
     .Github-header>h3{
         margin: 0px;
-        border-bottom: 1px groove gray;
+        border-bottom: 1px groove #ffa500;
+        color: #ffa500;
         width: 270px;
         text-align: center;
     }
@@ -126,7 +128,6 @@ body{
         flex-direction: column;
         align-items: flex-start;
         height: 65px;
-        color: #8b4704;
     } 
     .Social-header{
         width: 50%;
@@ -135,19 +136,35 @@ body{
 
     .Social-links{
         text-align: center;
-        color: #8b4704;
     }
     a{
         font-size: 14px;
     }
+    a:link{
+        color: #ffa500;
+        text-decoration: none;
+    }
+    a:visited{
+        color: #ffa500;
+    }
+    a:hover{
+        color: #965500;
+        text-decoration: underline;
+
+    }
     .img-space{
-        width: 60px;
+        width: 1%;
     }
 
     img{
-        height: 90%;
-        width: 90%;
+        height: 50px;
+        width: 50px;
         border: 3px groove grey;
+        transition: border 0.1s linear;
+    }
+    img:hover{
+        border: 5px outset #ff9a17;
+        cursor: pointer;
     }
     /* table, tr, td{
         border: 1px yellow groove;
