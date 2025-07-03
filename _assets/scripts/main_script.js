@@ -1,3 +1,4 @@
+import { movePage } from "./pathHandler.js";
 const textarea = document.querySelector('textarea')
 const desc = {
     "main": [
@@ -42,6 +43,10 @@ function createButtonEventListener(button){
     button.addEventListener('mouseleave', () => {
       writeDesc('main');
     });
+    button.addEventListener('click', () => {
+        console.log('clicked')
+        movePage(location.pathname, button.textContent);
+    })
     console.log(`${button.textContent} eventListener set!`)
 }
 
