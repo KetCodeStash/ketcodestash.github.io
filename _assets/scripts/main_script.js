@@ -1,7 +1,7 @@
 import { movePage } from "./pathHandler.js";
 const textarea = document.querySelector('textarea')
 const desc = {
-    "main": [
+    "Home": [
         "Welcome to KetCodeStash",
         "This is my little web project where I combined all of my web app to one Git page. Here you can play all sort of fun games or use some tools that might be useful. also if you wanna read the story behind all this projects, you can check out my blog",
         "Enjoy your stay! ^^"
@@ -23,38 +23,29 @@ const desc = {
     ]
 }
 
-
 function writeDesc(name){
-    const textarea = document.querySelector('textarea');
     const summary = desc[name];
-    textarea.value = ""
+    $("textarea").val("")
 
     summary.forEach(write)
     function write(text){
-        textarea.value = `${textarea.value}${text}\n\n`;
+        console.log('write')
+        $("textarea").val(`${$(textarea).val()}${text}\n\n`);
     }
 }
-
-function createButtonEventListener(button){
-    button.addEventListener('mouseenter', () => {
-      writeDesc(button.textContent);
-    });
-
-    button.addEventListener('mouseleave', () => {
-      writeDesc('main');
-    });
-    button.addEventListener('click', () => {
-        console.log('clicked')
-        movePage(location.pathname, button.textContent);
+function setupButtons(){
+    $("button").on('mouseenter',(event)=>{
+        writeDesc($(event.target).text());
     })
-    console.log(`${button.textContent} eventListener set!`)
+    $("button").on('mouseleave',(event)=>{
+        writeDesc("Home");
+    })
+    $("button").on('click', (event)=>{
+        movePage(location.pathname, $(event.target).text());
+    })
 }
-
+$(onWebLoaded)
 function onWebLoaded(){
-    const buttons = document.querySelectorAll('button');   
-    writeDesc('main')
-    buttons.forEach(createButtonEventListener);
-    
+    writeDesc("Home"); 
+    setupButtons();
 }
-
-document.addEventListener('DOMContentLoaded', onWebLoaded);
