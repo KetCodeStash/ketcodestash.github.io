@@ -1,8 +1,28 @@
 body{
     font-family: 'Courier New', Courier, monospace;
+    background-color: #151515;
 }
 .circular-style{
     border-radius: 50%;
+}
+h1>span{
+    color: #00aabb;
+    text-shadow:0px 0px 2px #00ccbb;
+}
+    /* for sub-title */
+h2{
+    color: #00aabb;
+    border-bottom: 1px groove #00aabb;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 30px;
+    text-align: center;
+}
+.style-main{
+    background-color: #111;
+    border: 2px #00ccbb groove;
+    box-shadow: 0px 1px 5px 1px #0099bb;
+    color: #bbbbbb;
 }
 
 
@@ -13,30 +33,12 @@ body{
         padding-right: 20px;
         padding-left: 10px;
         column-gap: 10px;
-        row-gap: 15px;
-        background-color: #151515;
+        row-gap: 15px;   
     }
     /* styling */
-    .style-main{
-        background-color: #111;
-        border: 2px #00ccbb groove;
-        box-shadow: 0px 1px 5px 1px #0099bb;
-        color: #bbbbbb;
-    }
+
     /* for title */
-    h1>span{
-        color: #00aabb;
-        text-shadow:0px 0px 2px #00ccbb;
-    }
-    /* for sub-title */
-    h2{
-        color: #00aabb;
-        border-bottom: 1px groove #00aabb;
-        padding-left: 20px;
-        padding-right: 20px;
-        height: 30px;
-        text-align: center;
-    }
+
     /* for footer links */
     a{ 
         text-align: left;
@@ -44,7 +46,7 @@ body{
     }
     /* layout */
     /* header */
-    body>header{
+    header{
         grid-column-start: 1;
         grid-column-end: 3;
         height: 90px;
@@ -54,16 +56,21 @@ body{
         border-top-right-radius: 15px;
     }
     /* navigation */
-    body>nav{
+    nav{
         display: flex;
         flex-direction: column;
         align-items: center;
         height: 500px;
     }
     /* buttons */
-    button{
+    .button-container{
+        width: 80%;
         height: 100px;
-        width: 400px;
+        margin: 10px;
+    }
+    button{
+        height: 100%;
+        width: 100%;
         margin: 10px;
         border-radius: 15px;
         background-color: #222;
@@ -72,16 +79,11 @@ body{
         color: #00ccbb;
         transition: border .1s linear, height .1s linear, width .1s linear, box-shadow 50ms linear;
     }
-    button:hover{
-        box-shadow: 0px 1px 10px 1px #0099bb;
-        height: 110px;
-        width: 420px;
-    }
     button:active{
         box-shadow: 0px 1px 20px 1px #0099bb;
     }
     /* description section */
-    body>section{
+    section{
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -99,7 +101,7 @@ body{
         outline: 0px;
     }
     /* footer */
-    body>footer{
+    footer{
         display: flex;
         flex-direction: column;
         height: 100px;
@@ -166,42 +168,139 @@ body{
         border: 5px outset #ff9a17;
         cursor: pointer;
     }
-    /* table, tr, td{
-        border: 1px yellow groove;
-    } */
-
 }
-
-@media (max-aspect-ratio: 8/6) {
-    /* header layout */
-    header{
-        width: 95%;
-        height: 50px;
-    }
-    /* content section layout */
-    .content-container{
+/* mobile port */
+@media (max-aspect-ratio: 4/3) {
+    body{
         display: flex;
-        flex-wrap: wrap;
-        width: 95%;
+        flex-direction: column;
     }
-    /* navigation and descriptions */
-    .content-container *{
-        width: 100%;
+    .style-main{
+        margin: 10px;
     }
-    .content-container>nav{
-        margin-bottom: 7px;
+    header{
+        height: 90px;
+        text-align: center;
+        padding-top: 5px;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
     }
-    .content-container>section{
-        margin-top: 7px
+    nav{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 500px;
     }
-    /* redirect footer */
+    /* buttons */
+    .button-container{
+        display: flex;
+        flex-direction: row;
+        width: 75%;
+        height: 100px;
+        margin: 10px;
+    }
+    button{
+        height: 100%;
+        width: 90%;
+        border-bottom-left-radius: 15px;
+        border-top-left-radius: 15px;
+        background-color: #222;
+        border: 2px #00ccbb groove;
+        box-shadow: 0px 1px 5px 1px #0099bb;
+        color: #00ccbb;
+        transition: border .1s linear, height .1s linear, width .1s linear, box-shadow 50ms linear;
+    }
+    .hint{
+        height: 100%;
+        width: 10%;
+        margin-left: 10px;
+        border-radius: 0px;
+        border-bottom-right-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+    button:active{
+        box-shadow: 0px 1px 20px 1px #0099bb;
+    }
+    /* description section */
+    section{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        height: 20%
+    }
+    section>textarea{
+        width: 90%;
+        height: 90%;
+        background-color: #222;
+        margin-top: 10px;
+        margin-bottom: 40px;
+        color: #0f0;
+        border: #888 groove;
+        border-radius: 5px;
+        outline: 0px;
+    }
     footer{
-        width: 95%;
-        height: 40px;
+        display: flex;
+        flex-direction: column;
+        height: 100px;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        padding: 1px;
+        padding-left: 10px;
+    }
+    h3{
+        margin: 0px;
+    }
+    .Github-header{
+        padding: 0px;
+    }
+    .Github-header>h3{
+        margin: 0px;
+        border-bottom: 1px groove #ffa500;
+        color: #ffa500;
+        width: 270px;
+        text-align: center;
+    }
+    .Github-links{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        height: 65px;
+    } 
+    .Social-header{
+        width: 50%;
+        text-align: center;
     }
 
-    /* etc */
-    .layout-margin{
-        margin: 10px;
+    .Social-links{
+        text-align: center;
+    }
+    a{
+        font-size: 14px;
+    }
+    a:link{
+        color: #ffa500;
+        text-decoration: none;
+    }
+    a:visited{
+        color: #ffa500;
+    }
+    a:hover{
+        color: #965500;
+        text-decoration: underline;
+
+    }
+    .img-space{
+        width: 1%;
+    }
+    img{
+        height: 50px;
+        width: 50px;
+        border: 3px groove grey;
+        transition: border 0.1s linear;
+    }
+    img:hover{
+        border: 5px outset #ff9a17;
+        cursor: pointer;
     }
 }

@@ -33,18 +33,38 @@ function writeDesc(name){
         $("textarea").val(`${$(textarea).val()}${text}\n\n`);
     }
 }
+
+function onClick(b){
+    
+    if($(b).text()=='?'){
+        writeDesc($(b).attr('id'));
+    }else{
+        movePage(location.pathname, $(b).text());
+    }
+    console.log($(b).text())
+}
+
+
 function setupButtons(){
-    $("button").on('mouseenter',(event)=>{
-        writeDesc($(event.target).text());
-    })
-    $("button").on('mouseleave',(event)=>{
-        writeDesc("Home");
-    })
+    const aspecRatio = $(window).width()/$(window).height()
+    console.log(`${aspecRatio}/${4/3}`)
+    if(aspecRatio>=4/3){
+        $(".hint").hide();
+        $("button").on('mouseenter',(event)=>{
+          writeDesc($(event.target).text());
+        })
+        $("button").on('mouseleave',()=>{
+            writeDesc("Home");
+        })
+    }else{
+        $(".hint").show();
+    }
     $("button").on('click', (event)=>{
-        movePage(location.pathname, $(event.target).text());
-    })
+        onClick(event.target)
+    })    
 }
 $(onWebLoaded)
+$(window).on('resize', onWebLoaded)
 function onWebLoaded(){
     writeDesc("Home"); 
     setupButtons();
