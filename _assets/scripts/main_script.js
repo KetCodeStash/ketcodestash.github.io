@@ -1,5 +1,4 @@
 import { movePage } from "./pathHandler.js";
-const textarea = document.querySelector('textarea')
 const desc = {
     "Home": [
         "Welcome to KetCodeStash",
@@ -29,32 +28,41 @@ function writeDesc(name){
 
     summary.forEach(write)
     function write(text){
-        console.log('write')
-        $("textarea").val(`${$(textarea).val()}${text}\n\n`);
+        $("textarea").val(`${$('textarea').val()}${text}\n\n`);
     }
+
+    // TODO Fix dynamic description size 
+    console.log($('textarea')[0].scrollHeight)
+    $('textarea').height($('textarea')[0].scrollHeight);
 }
 
+function onHoverAnimation(eventType, id){
+    if(eventType == 'mouseenter'){
+         $(`#${id}`).css('transform', 'scale(1)');
+    }else{
+        $(`#${id}`).css('transform', 'scale(0.9)');
+    }
+}
 function onClick(b){
-    
     if($(b).text()=='?'){
         writeDesc($(b).attr('id'));
     }else{
         movePage(location.pathname, $(b).text());
     }
-    console.log($(b).text())
 }
-
 
 function setupButtons(){
     const aspecRatio = $(window).width()/$(window).height()
     console.log(`${aspecRatio}/${4/3}`)
     if(aspecRatio>=4/3){
         $(".hint").hide();
-        $("button").on('mouseenter',(event)=>{
+        $(".action-buttons").on('mouseenter',(event)=>{
           writeDesc($(event.target).text());
+          onHoverAnimation(event.type, $(event.target).attr('id'))
         })
-        $("button").on('mouseleave',()=>{
+        $(".action-buttons").on('mouseleave',(event)=>{
             writeDesc("Home");
+            onHoverAnimation(event.type, $(event.target).attr('id'))
         })
     }else{
         $(".hint").show();

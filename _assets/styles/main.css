@@ -2,14 +2,23 @@ body{
     font-family: 'Courier New', Courier, monospace;
     background-color: #151515;
 }
+
+/* main-styling */
 .circular-style{
     border-radius: 50%;
 }
+.style-main{
+    background-color: #111;
+    border: 2px #00ccbb groove;
+    box-shadow: 0px 1px 5px 1px #0099bb;
+    color: #bbbbbb;
+}
+/* website name highlight */ 
 h1>span{
     color: #00aabb;
     text-shadow:0px 0px 2px #00ccbb;
 }
-    /* for sub-title */
+/* sub-title */
 h2{
     color: #00aabb;
     border-bottom: 1px groove #00aabb;
@@ -18,14 +27,27 @@ h2{
     height: 30px;
     text-align: center;
 }
-.style-main{
-    background-color: #111;
-    border: 2px #00ccbb groove;
-    box-shadow: 0px 1px 5px 1px #0099bb;
-    color: #bbbbbb;
+/* footer header */
+h3{
+    margin: 0px;
+}
+/* footer links */
+a{
+    font-size: 14px;
+}
+a:link{
+    color: #ffa500;
+    text-decoration: none;
+}
+a:visited{
+    color: #ffa500;
+}
+a:hover{
+    color: #965500;
+    text-decoration: underline;
 }
 
-
+/* desktop/wide horizontal aspect ratio*/
 @media (min-aspect-ratio: 4/3) {
     body{
         display: grid;
@@ -35,16 +57,7 @@ h2{
         column-gap: 10px;
         row-gap: 15px;   
     }
-    /* styling */
-
-    /* for title */
-
-    /* for footer links */
-    a{ 
-        text-align: left;
-        font-size: 11px;
-    }
-    /* layout */
+    /* layouting */
     /* header */
     header{
         grid-column-start: 1;
@@ -64,11 +77,14 @@ h2{
     }
     /* buttons */
     .button-container{
+        position: relative;
         width: 80%;
         height: 100px;
         margin: 10px;
+        transform: scale(0.9);
+        transition: transform 0.1s linear;
     }
-    button{
+    .action-buttons{
         height: 100%;
         width: 100%;
         margin: 10px;
@@ -77,7 +93,7 @@ h2{
         border: 2px #00ccbb groove;
         box-shadow: 0px 1px 5px 1px #0099bb;
         color: #00ccbb;
-        transition: border .1s linear, height .1s linear, width .1s linear, box-shadow 50ms linear;
+        transition: box-shadow 50ms linear;
     }
     button:active{
         box-shadow: 0px 1px 20px 1px #0099bb;
@@ -112,9 +128,6 @@ h2{
         padding: 1px;
         padding-left: 10px;
     }
-    h3{
-        margin: 0px;
-    }
     .Github-header{
         padding: 0px;
     }
@@ -139,21 +152,6 @@ h2{
     .Social-links{
         text-align: center;
     }
-    a{
-        font-size: 14px;
-    }
-    a:link{
-        color: #ffa500;
-        text-decoration: none;
-    }
-    a:visited{
-        color: #ffa500;
-    }
-    a:hover{
-        color: #965500;
-        text-decoration: underline;
-
-    }
     .img-space{
         width: 1%;
     }
@@ -169,17 +167,23 @@ h2{
         cursor: pointer;
     }
 }
-/* mobile port */
+/* mobile/vertical aspect ratio */
 @media (max-aspect-ratio: 4/3) {
     body{
-        display: flex;
-        flex-direction: column;
+        overflow:unset
     }
+    /* style add-on */
     .style-main{
-        margin: 10px;
+        margin: 20px;
+    }
+    h1{
+        font-size: 55px;
+    }
+    h2{
+        font-size: 50px;
+        height: 70px;
     }
     header{
-        height: 90px;
         text-align: center;
         padding-top: 5px;
         border-top-left-radius: 15px;
@@ -189,15 +193,15 @@ h2{
         display: flex;
         flex-direction: column;
         align-items: center;
-        height: 500px;
+        padding-bottom: 40px;
     }
     /* buttons */
     .button-container{
         display: flex;
         flex-direction: row;
         width: 75%;
-        height: 100px;
-        margin: 10px;
+        height: 140px;
+        margin: 15px;
     }
     button{
         height: 100%;
@@ -208,6 +212,7 @@ h2{
         border: 2px #00ccbb groove;
         box-shadow: 0px 1px 5px 1px #0099bb;
         color: #00ccbb;
+        font-size: 30px;
         transition: border .1s linear, height .1s linear, width .1s linear, box-shadow 50ms linear;
     }
     .hint{
@@ -226,14 +231,19 @@ h2{
         display: flex;
         align-items: center;
         flex-direction: column;
-        height: 20%
     }
     section>textarea{
         width: 90%;
-        height: 90%;
+        min-height: 20px;
+        overflow: hidden;
+        box-sizing: border-box;
+        resize: none;
+        font-size: 20px;
+
         background-color: #222;
         margin-top: 10px;
-        margin-bottom: 40px;
+        margin-bottom: 50px;
+        padding: 10px;
         color: #0f0;
         border: #888 groove;
         border-radius: 5px;
@@ -248,9 +258,7 @@ h2{
         padding: 1px;
         padding-left: 10px;
     }
-    h3{
-        margin: 0px;
-    }
+
     .Github-header{
         padding: 0px;
     }
@@ -274,21 +282,6 @@ h2{
 
     .Social-links{
         text-align: center;
-    }
-    a{
-        font-size: 14px;
-    }
-    a:link{
-        color: #ffa500;
-        text-decoration: none;
-    }
-    a:visited{
-        color: #ffa500;
-    }
-    a:hover{
-        color: #965500;
-        text-decoration: underline;
-
     }
     .img-space{
         width: 1%;
