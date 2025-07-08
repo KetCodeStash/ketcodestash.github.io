@@ -35,7 +35,6 @@ function writeDesc(name){
 }
 
 function onClick(b){
-    
     if($(b).text()=='?'){
         writeDesc($(b).attr('id'));
     }else{
