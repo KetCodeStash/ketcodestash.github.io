@@ -1,4 +1,5 @@
 import { movePage } from "./pathHandler.js";
+let isVertical = false
 const desc = {
     "Home": [
         "Welcome to KetCodeStash",
@@ -30,10 +31,15 @@ function writeDesc(name){
     function write(text){
         $("textarea").val(`${$('textarea').val()}${text}\n\n`);
     }
-
     // TODO Fix dynamic description size 
-    console.log($('textarea')[0].scrollHeight)
-    $('textarea').height($('textarea')[0].scrollHeight);
+    if(isVertical){
+        $('textarea').css('font-size', '25px')
+        $('textarea').css('height',`${$('textarea')[0].scrollHeight-30}px`);
+        console.log(`${$('textarea')[0].scrollHeight-30}/${$('textarea').height()}`)
+        return
+    }
+    $('textarea').css('font-size', '14px')
+
 }
 
 function onHoverAnimation(eventType, id){
@@ -53,18 +59,21 @@ function onClick(b){
 
 function setupButtons(){
     const aspecRatio = $(window).width()/$(window).height()
-    console.log(`${aspecRatio}/${4/3}`)
     if(aspecRatio>=4/3){
+        isVertical=false
         $(".hint").hide();
         $(".action-buttons").on('mouseenter',(event)=>{
-          writeDesc($(event.target).text());
-          onHoverAnimation(event.type, $(event.target).attr('id'))
+            if(isVertical){return}
+            writeDesc($(event.target).text());
+            onHoverAnimation(event.type, $(event.target).attr('id'))
         })
         $(".action-buttons").on('mouseleave',(event)=>{
+            if(isVertical){return}
             writeDesc("Home");
             onHoverAnimation(event.type, $(event.target).attr('id'))
         })
     }else{
+        isVertical=true
         $(".hint").show();
     }
     $("button").on('click', (event)=>{
@@ -74,6 +83,6 @@ function setupButtons(){
 $(onWebLoaded)
 $(window).on('resize', onWebLoaded)
 function onWebLoaded(){
-    writeDesc("Home"); 
     setupButtons();
+    writeDesc("Home"); 
 }
