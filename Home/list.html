@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script type="text/javascript" src="/assets_/libraries/jquery-3.7.1.min.js"></script>
+</head>
+<body>  
+    <ul id="pathListing">
+    </ul>
+    <script type="module">
+        import {listPaths} from "/assets_/scripts/pathHandler.js";
+        function onLoad(){
+        const url = new URL(window.location.href)
+        const urlParams = new URLSearchParams(url.search);
+        const paths = listPaths(urlParams.get("path"));
+        let listing = ""
+
+        paths.forEach(path => {
+            console.log(path)
+            listing = listing + `<li>${path}</li>`;
+        });
+        $("#pathListing").html(listing);
+        }
+        $(onLoad);
+    </script>
+</body>
+</html>

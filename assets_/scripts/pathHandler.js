@@ -14,7 +14,7 @@ function checkPath(currentPage, TargetPaths){
 function movePage(currentPage, TargetPage){
     console.log('run')
     if(currentPage.search("Home") ){
-        document.location.href = `/${TargetPage}`;
+        document.location.href = `list.html?path=${encodeURIComponent(TargetPage)}`;
     }else if(checkPath()){
         document.location.href = `${currentPage}/${TargetPage}`
     }else{
@@ -22,6 +22,11 @@ function movePage(currentPage, TargetPage){
     }
 }
 
+function listPaths(str){
+    return paths[str]
+}
+
 export {
-    movePage
+    movePage,
+    listPaths
 }

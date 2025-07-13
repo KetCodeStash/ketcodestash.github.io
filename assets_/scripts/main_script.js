@@ -31,7 +31,7 @@ function writeDesc(name){
     function write(text){
         $("textarea").val(`${$('textarea').val()}${text}\n\n`);
     }
-    // TODO Fix dynamic description size 
+
     if(isVertical){
         $('textarea').css('font-size', '25px')
         $('textarea').css('height',`${$('textarea')[0].scrollHeight-30}px`);
