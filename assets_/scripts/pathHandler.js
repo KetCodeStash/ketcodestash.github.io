@@ -1,6 +1,13 @@
-import paths from "./paths.js";
+function fetchPaths(){ 
+    return 
+    function onFailed(){
+     
+        console.log("Server: JSON Paths.json didn't load")
+    }
+}
 
 function checkPath(currentPage, TargetPaths){
+    const paths = fetchPaths()
     if(!paths[currentPage.replace("/", "")]){
         return false;
     }
@@ -12,7 +19,6 @@ function checkPath(currentPage, TargetPaths){
 }
 
 function movePage(currentPage, TargetPage){
-    console.log('run')
     if(currentPage.search("Home") ){
         document.location.href = `list.html?path=${encodeURIComponent(TargetPage)}`;
     }else if(checkPath()){
@@ -23,7 +29,8 @@ function movePage(currentPage, TargetPage){
 }
 
 function listPaths(str){
-    return paths[str]
+
+    return fetchPaths()[str]
 }
 
 export {
