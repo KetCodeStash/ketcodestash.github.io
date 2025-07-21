@@ -38,16 +38,16 @@ function writeDesc(name){
         console.log(`${$('textarea')[0].scrollHeight-30}/${$('textarea').height()}`)
         return
     }
-    $('textarea').css('font-size', '14px')
+    $('textarea').css('font-size', '16px')
 
 }
 
 function onHoverAnimation(eventType, id){
-    if(eventType == 'mouseenter'){
-         $(`#${id}`).css('transform', 'scale(1)');
-    }else{
-        $(`#${id}`).css('transform', 'scale(0.9)');
-    }
+    // if(eventType == 'mouseenter'){
+    //      $(`#${id}`).css('transform', 'scale(1)');
+    // }else{
+    //     $(`#${id}`).css('transform', 'scale(0.9)');
+    // }
 }
 function onClick(b){
     if($(b).text()=='?'){

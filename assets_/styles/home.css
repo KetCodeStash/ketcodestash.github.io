@@ -1,0 +1,12 @@
+/* @media (min-aspect-ratio: 4/3) {
+
+
+} */
+
+.image-container{
+    background-color: black;
+    border: 5px #00d1e0 groove;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+}
