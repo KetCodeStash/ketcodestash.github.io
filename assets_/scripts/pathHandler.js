@@ -1,7 +1,6 @@
 function fetchPaths(){ 
     return 
     function onFailed(){
-     
         console.log("Server: JSON Paths.json didn't load")
     }
 }
