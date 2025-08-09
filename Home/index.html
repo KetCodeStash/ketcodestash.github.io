@@ -3,15 +3,16 @@ s<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets_/styles/home_mobile.css">
+    <link rel="stylesheet" href="/assets_/styles/home.css">
+    <script type="text/javascript" src="/assets_/libraries/jquery-3.7.1.min.js"></script>
+
 </head>
 <body>
     <header class="header-container" ><h1 class="header-text">KetCodeStash</h1></header>
     <nav class="nav-container">
         <ul class="nav-list">
-            <li class="nav-links"><a href="">Home</a></li>
-            <li class="nav-links"><a href="">Projects</a></li>
-            <li class="nav-links"><a href="">Web Demo</a></li>
+            <li class="nav-links"><a href="https://github.com/KetCodeStash/ketcodestash.github.io">Repository</a></li>
+            <li class="nav-links"><a href="https://github.com/KetCodeStash">Github</a></li>
         </ul>
     </nav>
     <section class="main-container">
@@ -22,7 +23,7 @@ s<!DOCTYPE html>
                 This is the place where I put all my little Website demo soo everyone could play around with it without having setup some stuff for it to work. good all Github already have that all taken care off.  you can found all sorts of stuffs here.  you could play some <b>Games</b>, use some <b>Tools</b> and some other stuffs. if you found anything wrong or wanna know more about me. check out my social <br><br> that's all from me Have FUN!! ^^
             </p>
         </section>
-        <section class="project-container">
+        <section class="project-section-container">
             <section class="preview-container">
                 <img src="" alt="" class="preview-img">
                 <h3 class="preview-title">Lorem Ipsum</h3>
@@ -30,28 +31,21 @@ s<!DOCTYPE html>
                 <button class="start-button">START</button>
             </section>
             <section class="project-list-container">
-                <section class="project-list-header">
-                    <h3>PROJECTS</h3>
-                </section>
-                <section class="project-list">
-                    <ul>
-                        <li class="project-object">
-                            <img src="" alt="" class="project-img">
-                            <h4 class="project-name"></h4>
-                        </li>
-                    </ul>
-                </section>
+                <h3 class="project-list-header">PROJECTS</h3>
+                <ul class="project-list">
+                    <li class="projects" id="dummy">
+                        <img src="" alt="" class="project-img">
+                        <h4 class="project-name">Lorem Ipsum</h4>
+                        <p class="project-date">made: 00-00-0000  updated: 00-00-0000</p>
+                    </li>
+                </ul>
             </section>
         </section>
     </section>
     <footer>
-        <ul>
-            <li>Instagram</li>
-            <li>twitter</li>
-            <li>Github</li>
-            <li>Repository</li>
-            <li>Discord</li>
-        </ul>
+        <p class="Author">Aal@2025</p>
     </footer>
+    <div class="footer-bg"></div>
+    <script type="module" src="/assets_/scripts/home.js"></script>
 </body>
 </html>

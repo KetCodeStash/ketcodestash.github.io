@@ -1,16 +1,5 @@
 {
     "Games": [
-        "ProjectA",
-        "ProjectB"
-    ],
-    "Blogs": [
-        "BlogA",
-        "BlogV",
-        "BlogC"
-    ],
-    "Utilities": [
-        "Things",
-        "This",
-        "THat"
+        "rougelike-game"
     ]
 }

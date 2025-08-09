@@ -1,88 +1,91 @@
-import { movePage } from "./pathHandler.js";
-let isVertical = false
-const desc = {
-    "Home": [
-        "Welcome to KetCodeStash",
-        "This is my little web project where I combined all of my web app to one Git page. Here you can play all sort of fun games or use some tools that might be useful. also if you wanna read the story behind all this projects, you can check out my blog",
-        "Enjoy your stay! ^^"
-    ],
-    "Games": [
-        "Games",
-        "This is where I store all my games. Everything here is made only with HTML, CSS, and JavaScript. for now everything here doesn't have any save yet soo if you reach any milestone or record just take a screenshot of it ",
-        "Have fun!"
-    ],
-    "Blogs": [
-        "Blogs",
-        "This is where I put my blogs about all of my projects. Not only the project that I put in here but this also include some other projects outside of Web developing, like Games, Systems, and Hardware. Hope I could reach all of that goals someday",
-        "Happy reading!"
-    ],
-    "Utilities": [
-        "Utilities",
-        "This is where I put all of my web tools app. Usually a project from a study course. Some of this include something like calculator, templetes, and etc",
-        "Hope you found something useful in here :3"
-    ]
+import pathsHandler from "./pathHandler.js"; 
+let prevPreviewId 
+let webLaunched = false
+
+// function setupButtons(){
+//     const aspecRatio = $(window).width()/$(window).height()
+//     if(aspecRatio>=4/3){
+//         isVertical=false
+//         $(".hint").hide();
+//         $(".action-buttons").on('mouseenter',(event)=>{
+//             if(isVertical){return}
+//             writeDesc($(event.target).text());
+//             onHoverAnimation(event.type, $(event.target).attr('id'))
+//         })
+//         $(".action-buttons").on('mouseleave',(event)=>{
+//             if(isVertical){return}
+//             writeDesc("Home");
+//             onHoverAnimation(event.type, $(event.target).attr('id'))
+//         })
+//     }else{
+//         isVertical=true
+//         $(".hint").show();
+//     }
+//     $("button").on('click', (event)=>{
+//         onClick(event.target)
+//     })    
+// }
+
+function displayProjects(paths){
+    paths.Games.forEach((path) => {
+        $('#dummy').clone()
+        .appendTo('.project-list')
+        .attr('id', path)
+        .children('.project-name')
+        .html(path);
+    });
+    $('#dummy').remove();
 }
 
-function writeDesc(name){
-    const summary = desc[name];
-    $("textarea").val("")
 
-    summary.forEach(write)
-    function write(text){
-        $("textarea").val(`${$('textarea').val()}${text}\n\n`);
-    }
-
-    if(isVertical){
-        $('textarea').css('font-size', '25px')
-        $('textarea').css('height',`${$('textarea')[0].scrollHeight-30}px`);
-        console.log(`${$('textarea')[0].scrollHeight-30}/${$('textarea').height()}`)
-        return
-    }
-    $('textarea').css('font-size', '16px')
-
+function loadData(){
+    pathsHandler.fetchJson();
+    let id = setInterval(()=>{
+        let paths = pathsHandler.listData()
+        if(paths){
+            console.log(paths)
+            displayProjects(paths);
+            clearInterval(id);
+        }
+    }, 1000)
 }
 
-function onHoverAnimation(eventType, id){
-    // if(eventType == 'mouseenter'){
-    //      $(`#${id}`).css('transform', 'scale(1)');
-    // }else{
-    //     $(`#${id}`).css('transform', 'scale(0.9)');
-    // }
-}
-function onClick(b){
-    if($(b).text()=='?'){
-        writeDesc($(b).attr('id'));
+function showPreview(e){
+    let newSelectedId
+    if($(e.target).attr('class') == 'projects'){
+        newSelectedId = $(e.target).attr('id');
     }else{
-        movePage(location.pathname, $(b).text());
+        newSelectedId = $(e.target).parent().attr('id');
     }
+    if(newSelectedId==prevPreviewId){
+        $('.preview-container').css('left', '100%');
+        $(`#${prevPreviewId}`).css('background-color', 'transparent');
+        prevPreviewId=null;
+        return;
+    }
+    if(prevPreviewId){
+        $(`#${prevPreviewId}`).css('background-color', 'transparent');
+        $('.preview-container').animate({left: '100%'}, "2s");
+        $('.preview-container').animate({left: '0%'}, "2s");
+    }
+    $(`#${newSelectedId}`).css('background-color', '#0095ff');
+    $('.preview-container').css('left', '0%');
+    prevPreviewId=newSelectedId;
 }
 
-function setupButtons(){
-    const aspecRatio = $(window).width()/$(window).height()
-    if(aspecRatio>=4/3){
-        isVertical=false
-        $(".hint").hide();
-        $(".action-buttons").on('mouseenter',(event)=>{
-            if(isVertical){return}
-            writeDesc($(event.target).text());
-            onHoverAnimation(event.type, $(event.target).attr('id'))
-        })
-        $(".action-buttons").on('mouseleave',(event)=>{
-            if(isVertical){return}
-            writeDesc("Home");
-            onHoverAnimation(event.type, $(event.target).attr('id'))
-        })
-    }else{
-        isVertical=true
-        $(".hint").show();
-    }
-    $("button").on('click', (event)=>{
-        onClick(event.target)
-    })    
-}
+
 $(onWebLoaded)
 $(window).on('resize', onWebLoaded)
 function onWebLoaded(){
-    setupButtons();
-    writeDesc("Home"); 
+    if(webLaunched==false){
+        webLaunched=true
+        loadData()
+    }
+
+    $('.nav-links').on('click', (e)=>{
+        console.log();
+        window.location.href = $(e.target).children('a').attr('href');
+    })
+
+    $('.projects').on('click', showPreview)
 }

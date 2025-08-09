@@ -110,8 +110,8 @@ b{
 .preview-img{
     width: 95px;
     height: 95px;
-    grid-rows-start: 1;
-    grid-rows-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
     border: 5px solid #0095ff;
     border-radius: 30px;
 }
