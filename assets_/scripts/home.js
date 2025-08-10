@@ -1,6 +1,8 @@
-import pathsHandler from "./pathHandler.js"; 
 let prevPreviewId 
 let webLaunched = false
+let projectsDataBuffer = {
+
+}
 
 // function setupButtons(){
 //     const aspecRatio = $(window).width()/$(window).height()
@@ -26,31 +28,22 @@ let webLaunched = false
 //     })    
 // }
 
-function displayProjects(paths){
-    paths.Games.forEach((path) => {
-        $('#dummy').clone()
-        .appendTo('.project-list')
-        .attr('id', path)
-        .children('.project-name')
-        .html(path);
+async function fetchData(links) {
+    const data = await $.ajax({
+        type: "GET",
+        url: links,
+        dataType: "json",
     });
-    $('#dummy').remove();
+    if(data){
+        return data;
+    }
+    return false
+}
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-
-function loadData(){
-    pathsHandler.fetchJson();
-    let id = setInterval(()=>{
-        let paths = pathsHandler.listData()
-        if(paths){
-            console.log(paths)
-            displayProjects(paths);
-            clearInterval(id);
-        }
-    }, 1000)
-}
-
-function showPreview(e){
+async function showPreview(e){
     let newSelectedId
     if($(e.target).attr('class') == 'projects'){
         newSelectedId = $(e.target).attr('id');
@@ -60,32 +53,71 @@ function showPreview(e){
     if(newSelectedId==prevPreviewId){
         $('.preview-container').css('left', '100%');
         $(`#${prevPreviewId}`).css('background-color', 'transparent');
-        prevPreviewId=null;
+        prevPreviewId=undefined;
         return;
     }
     if(prevPreviewId){
         $(`#${prevPreviewId}`).css('background-color', 'transparent');
-        $('.preview-container').animate({left: '100%'}, "2s");
-        $('.preview-container').animate({left: '0%'}, "2s");
+        $('.preview-container').animate({left: '100%'}, "100ms");
+        $('.preview-container').animate({left: '0%'}, "100ms");
+        await sleep(380)
     }
+    
+    $('.preview-container').children('.preview-title').html(projectsDataBuffer[newSelectedId].title)
+    $('.preview-container').children('.preview-desc').html(projectsDataBuffer[newSelectedId].desc)
     $(`#${newSelectedId}`).css('background-color', '#0095ff');
     $('.preview-container').css('left', '0%');
+    console.log(prevPreviewId+'/'+newSelectedId)
     prevPreviewId=newSelectedId;
 }
 
 
+function display(projectData){
+    $('#dummy').clone()
+        .appendTo('.project-list')
+        .attr('id', projectData.title);
+
+    $(`#${projectData.title}`).children('.project-name').html(projectData.title)
+    $(`#${projectData.title}`).children('.project-date').html(`made: ${projectData.made} updated: ${projectData.updated}`)
+
+    $(`#${projectData.title}`).show()    
+    $(`#${projectData.title}`).on('click', showPreview)
+    return true
+}
+
+
+async function getProjectData(project) { 
+    const projectData = await fetchData(`/Projects/${project}/assets_/data/Home_Data.json`)
+    await display(projectData)
+    console.log(project)
+    projectsDataBuffer[project] = projectData;
+}
+function displayProjects(projects){
+    if(webLaunched){return}
+    webLaunched=true
+    projects.Games.forEach(getProjectData);
+    
+}
+
+
+
+
 $(onWebLoaded)
 $(window).on('resize', onWebLoaded)
-function onWebLoaded(){
-    if(webLaunched==false){
-        webLaunched=true
-        loadData()
+async function onWebLoaded(){
+    $('#dummy').hide()  
+    const projects = await fetchData('/assets_/data/paths.json');
+    if(projects){
+        await displayProjects(projects)
     }
+    
 
+    console.log('hell')
     $('.nav-links').on('click', (e)=>{
-        console.log();
+
         window.location.href = $(e.target).children('a').attr('href');
     })
-
-    $('.projects').on('click', showPreview)
+    $('.start-button').on('click', (e)=>{
+        window.location.href = `/Projects/${prevPreviewId}`        
+    })
 }

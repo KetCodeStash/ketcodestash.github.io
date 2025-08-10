@@ -135,7 +135,7 @@ b{
     border-radius: 30px;
 }
 .preview-title{
-    width: 150px;
+    width: 100%;
     text-align: center;
     margin-top: 10px;
     margin-bottom: 5px;
