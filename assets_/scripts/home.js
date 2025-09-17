@@ -51,26 +51,32 @@ async function showPreview(e){
         newSelectedId = $(e.target).parent().attr('id');
     }
     if(newSelectedId==prevPreviewId){
-        $('.preview-container').css('left', '100%');
-        $(`#${prevPreviewId}`).css('background-color', 'transparent');
+        $('.preview-container').css('right', '100%');
+        // $(`#${prevPreviewId}`).css('background-color', 'transparent');
         prevPreviewId=undefined;
         return;
     }
     if(prevPreviewId){
-        $(`#${prevPreviewId}`).css('background-color', 'transparent');
-        $('.preview-container').animate({left: '100%'}, "100ms");
-        $('.preview-container').animate({left: '0%'}, "100ms");
-        await sleep(380)
+        // $(`#${prevPreviewId}`).css('background-color', 'transparent');
+        $('.preview-container').animate({right: '100%'}, "200ms");
+        await sleep(500)
+        $('.preview-container').animate({right: '0%'}, "200ms");
     }
     
     $('.preview-container').children('.preview-title').html(projectsDataBuffer[newSelectedId].title)
     $('.preview-container').children('.preview-desc').html(projectsDataBuffer[newSelectedId].desc)
-    $(`#${newSelectedId}`).css('background-color', '#0095ff');
-    $('.preview-container').css('left', '0%');
+    // $(`#${newSelectedId}`).css('background-color', '#0095ff');
+    $('.preview-container').css('right', '0%');
     console.log(prevPreviewId+'/'+newSelectedId)
     prevPreviewId=newSelectedId;
 }
-
+function onHover(e){
+    if($(e.target).attr('class') != 'projects'){return}
+    $(e.target).css('background-color', '#333')
+}
+function onHoverStop(e){
+    $(e.target).css('background-color', 'transparent')
+}
 
 function display(projectData){
     $('#dummy').clone()
@@ -82,12 +88,13 @@ function display(projectData){
 
     $(`#${projectData.title}`).show()    
     $(`#${projectData.title}`).on('click', showPreview)
+    // $(`#${projectData.title}`).on('mouseenter', onHover)
+    // $(`#${projectData.title}`).on('mouseleave', onHoverStop)
     return true
 }
 
-
 async function getProjectData(project) { 
-    const projectData = await fetchData(`/Projects/${project}/assets_/data/Home_Data.json`)
+    const projectData = await fetchData(`/Projects/${project}/assets_/data/Desc.json`)
     await display(projectData)
     console.log(project)
     projectsDataBuffer[project] = projectData;
@@ -95,12 +102,8 @@ async function getProjectData(project) {
 function displayProjects(projects){
     if(webLaunched){return}
     webLaunched=true
-    projects.Games.forEach(getProjectData);
-    
+    projects.Games.forEach(getProjectData);   
 }
-
-
-
 
 $(onWebLoaded)
 $(window).on('resize', onWebLoaded)
@@ -110,11 +113,7 @@ async function onWebLoaded(){
     if(projects){
         await displayProjects(projects)
     }
-    
-
-    console.log('hell')
     $('.nav-links').on('click', (e)=>{
-
         window.location.href = $(e.target).children('a').attr('href');
     })
     $('.start-button').on('click', (e)=>{

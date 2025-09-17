@@ -7,6 +7,8 @@ body{
     background-image: url(/assets_/img/main-bg.jpg);
     font-family: 'Courier New', Courier, monospace;
 }
+
+@media only screen and (orientation: landscape){
 h2{
     color: #0095ff;
     margin-bottom: 5px;
@@ -107,7 +109,7 @@ b{
 
 .project-section-container{
     display: grid;
-    grid-template-columns: 20% auto;
+    grid-template-columns: auto 20%;
 }
 
 .preview-container{
@@ -115,22 +117,27 @@ b{
     align-items: center;
     flex-direction: column;
     position: relative;
-    left: 100%;
+    right: 100%;
     margin-top: 20px;
     margin-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px ;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px ;
     height: 350px;
+    max-width: 200px;
+    min-width: 150px;
     background-color: #111;
     transition: left 200ms ease-out;
     z-index: 10;
-    
+    transition: all 200ms ease-out;
 }
 .preview-img{
-    width: 150px;
-    height: 150px;
+    width: 75%;
+    height: 35%;
+    max-width: 122.5px;
     border: 5px solid #0095ff;
     border-radius: 30px;
 }
@@ -139,7 +146,7 @@ b{
     text-align: center;
     margin-top: 10px;
     margin-bottom: 5px;
-    font-size: 20px;
+    font-size:inherit;
 }
 .preview-desc{
     width: 150px;
@@ -208,6 +215,7 @@ b{
     padding-top:5px;
     padding-bottom: 5px;
     cursor: pointer;
+    background-color: transparent;
     /* border-top: 4px groove #222;
     border-bottom: 4px groove #222; */
 }
@@ -231,6 +239,9 @@ b{
 .projects:hover{
     background-color: #333;
 }
+.projects:active{
+    background-color: #0095ff;
+}
 footer{
     position: relative;
     top: -20px;
@@ -252,4 +263,6 @@ footer>p{
     width:100%;
     background-color: #111;
     z-index: 1;
+}    
 }
+
